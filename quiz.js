@@ -1,12 +1,23 @@
-let q=0, marks;
+let q, marks;
 const questionBox = document.getElementById("question-box");
-const timer = document.getElementById("timer");
-questionBox.style.display = "none";
+
+const timer = document.createElement("div");
+const question = document.createElement("div");
+const select = document.createElement("div");
+timer.id = "timer";
+question.id = "question";
+select.id = "select";
+questionBox.style.display="none";
 function startquiz(){
   marks=0;
-  questionBox.style.display = "block";
+  q=0;
+  questionBox.style.display="block";
+  questionBox.innerHTML = "";
+  questionBox.appendChild(timer);
+  questionBox.appendChild(question);
+  questionBox.appendChild(select);
   const start_btn = document.getElementById('start-btn');
-  start_btn.remove();
+  start_btn.style.display="none";
   displayNext();
 }
 function displayNext(){
@@ -43,7 +54,7 @@ function displayNext(){
       optionWrap.appendChild(optionLabel);
       optionsDiv.appendChild(optionWrap);
     });
-    let timeLeft = 0;
+    let timeLeft = 10;
     timer.textContent = `Time Left: ${timeLeft}`;
 
     const timerInterval = setInterval(() => {
@@ -76,6 +87,12 @@ function displayNext(){
 function displayMarks(){
   let result;
   const resultDiv = document.createElement('p');
+  const btnDiv = document.createElement('div');
+  const playAgainBtn = document.createElement('button');
+  playAgainBtn.textContent = "Play Again";
+  btnDiv.appendChild(playAgainBtn);
+  btnDiv.style.textAlign = "center";
+  playAgainBtn.addEventListener('click', startquiz);
   if(marks==10){
     result = "Congratulations! You scored 10/10.";
   }
@@ -88,6 +105,7 @@ function displayMarks(){
   resultDiv.innerHTML = result;
   questionBox.innerHTML = '';
   questionBox.appendChild(resultDiv);
+  questionBox.appendChild(btnDiv);
 }
 questions = [
   {
