@@ -107,7 +107,7 @@ function displayMarks(){
   questionBox.appendChild(resultDiv);
   questionBox.appendChild(btnDiv);
 }
-questions = [
+const questions = [
   {
     "question": "What is the capital of France?",
     "options": ["Berlin", "Madrid", "Paris", "Rome"],
